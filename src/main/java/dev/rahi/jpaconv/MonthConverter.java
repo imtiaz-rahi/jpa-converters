@@ -13,29 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.Duration;
+import java.time.Month;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
+ * {@link Month} to integer.
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
-public class DurationToStringConverter implements AttributeConverter<Duration, String> {
+@Converter
+public class MonthConverter implements AttributeConverter<Month, Integer> {
 
 	@Override
-	public String convertToDatabaseColumn(Duration attr) {
-		return attr == null ? null : attr.toString();
+	public Integer convertToDatabaseColumn(Month attr) {
+		return attr == null ? null : attr.getValue();
 	}
 
 	@Override
-	public Duration convertToEntityAttribute(String data) {
-		return data == null ? null : Duration.parse(data);
+	public Month convertToEntityAttribute(Integer data) {
+		return data == null ? null : Month.of(data);
 	}
 
 }

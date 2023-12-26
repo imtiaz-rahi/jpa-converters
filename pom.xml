@@ -1,16 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.imtiazrahi</groupId>
-	<artifactId>jsr310-jpa-converter</artifactId>
-	<version>0.1.0</version>
+	<groupId>dev.rahi</groupId>
+	<artifactId>jpa-converters</artifactId>
+	<version>0.5.0</version>
 	<inceptionYear>2017</inceptionYear>
-	<name>jsr310-jpa-converter</name>
-	<description>Converters for JSR-310 (Java 8 Data Time) classes to use with JPA</description>
+	<name>jpa-converters</name>
+	<description>Convenient JPA converters. Includes converters for JSR-310 (Java 8 Data Time)</description>
 	<url>https://github.com/imtiaz-rahi/jsr310-jpa-converter</url>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<jpa.version>2.1.1</jpa.version>
+		<java.version>8</java.version>
+		<jpa.version>3.1.0</jpa.version>
 		<git.host>github.com</git.host>
 		<git.user>imtiaz-rahi</git.user>
 		<github.url>https://${git.host}/${git.user}</github.url>
@@ -20,8 +22,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
 			<version>${jpa.version}</version>
 		</dependency>
 
@@ -132,7 +134,8 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<!-- https://www.smartics.eu/de.smartics.maven.plugin/buildmetadata-maven-plugin/1.6.1/usage.html -->
+				<!--
+				https://www.smartics.eu/de.smartics.maven.plugin/buildmetadata-maven-plugin/1.6.1/usage.html -->
 				<groupId>de.smartics.maven.plugin</groupId>
 				<artifactId>buildmetadata-maven-plugin</artifactId>
 				<version>1.6.1</version>
@@ -159,7 +162,8 @@
 					<dryRun>true</dryRun>
 					<organizationName>Imtiaz Rahi</organizationName>
 					<licenseName>apache_v2</licenseName>
-					<!-- <licenseResolver>${project.baseUri}/src/main/resources/META-INF</licenseResolver> -->
+					<!--
+					<licenseResolver>${project.baseUri}/src/main/resources/META-INF</licenseResolver> -->
 				</configuration>
 				<executions>
 					<execution>
@@ -207,9 +211,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>bintray-imtiaz-rahi-maven-repo</id>
-			<name>imtiaz-rahi-maven-repo</name>
-			<url>https://api.bintray.com/maven/imtiaz-rahi/maven-repo/${project.artifactId}/;publish=1</url>
+			<id>github</id>
+			<name>GitHub imtiaz-rahi Apache Maven Packages repository</name>
+			<url>https://maven.pkg.github.com/${git.user}/${project.artifactId}</url>
 		</repository>
 	</distributionManagement>
 </project>

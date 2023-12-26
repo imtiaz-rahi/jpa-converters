@@ -13,32 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.OffsetTime;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
- * Converts {@link OffsetTime} to {@link String} and back. <br>
- * NOTE: we are losing timezone information here.
+ * Converts {@link ZonedDateTime} to {@link Timestamp} and back. <br>
+ * NOTE: we may lose timezone offset with some database; e.g. PostgreSQL
  * 
  * @author Imtiaz Rahi
- * @since 2017-05-26
+ * @since 2016-03-04
  * @see <a href="https://github.com/marschall/threeten-jpa">ThreeTen JPA</a>
  * @see <a href="https://bitbucket.org/montanajava/jpaattributeconverters">Using the Java 8 Date Time Classes with JPA!</a>
  */
-@Converter(autoApply = true)
-public class OffsetTimeConverter implements AttributeConverter<OffsetTime, String> {
+@Converter
+public class ZonedDateTimeConverter implements AttributeConverter<ZonedDateTime, Timestamp> {
 
 	@Override
-	public String convertToDatabaseColumn(OffsetTime attr) {
-		return attr == null ? null : attr.toString();
+	public Timestamp convertToDatabaseColumn(ZonedDateTime attr) {
+		return attr == null ? null : Timestamp.from(attr.toInstant());
 	}
 
 	@Override
-	public OffsetTime convertToEntityAttribute(String data) {
-		return data == null ? null : OffsetTime.parse(data);
+	public ZonedDateTime convertToEntityAttribute(Timestamp data) {
+		return data == null ? null : data.toInstant().atZone(ZoneId.systemDefault());
 	}
 }

@@ -13,30 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.DayOfWeek;
+import java.time.Duration;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
 
 /**
- * {@link DayOfWeek} to integer.
+ * {@link Duration} to nano seconds
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
-public class DayOfWeekConverter implements AttributeConverter<DayOfWeek, Integer> {
+public class DurationToNanoConverter implements AttributeConverter<Duration, Long> {
 
 	@Override
-	public Integer convertToDatabaseColumn(DayOfWeek attr) {
-		return attr == null ? null : attr.getValue();
+	public Long convertToDatabaseColumn(Duration attr) {
+		return attr == null ? null : attr.toNanos();
 	}
 
 	@Override
-	public DayOfWeek convertToEntityAttribute(Integer data) {
-		return data == null ? null : DayOfWeek.of(data);
+	public Duration convertToEntityAttribute(Long data) {
+		return data == null ? null : Duration.ofNanos(data);
 	}
 
 }

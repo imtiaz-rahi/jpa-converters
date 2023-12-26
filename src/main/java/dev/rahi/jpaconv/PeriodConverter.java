@@ -13,31 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.OffsetDateTime;
+import java.time.Period;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
- * Converts {@link OffsetDateTime} to {@link String} and back. <br>
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
- * @see <a href="https://github.com/marschall/threeten-jpa">ThreeTen JPA</a>
- * @see <a href="https://bitbucket.org/montanajava/jpaattributeconverters">Using the Java 8 Date Time Classes with JPA!</a>
  */
-@Converter(autoApply = true)
-public class OffsetDateTimeConverter implements AttributeConverter<OffsetDateTime, String> {
+@Converter
+public class PeriodConverter implements AttributeConverter<Period, String> {
 
 	@Override
-	public String convertToDatabaseColumn(OffsetDateTime attr) {
+	public String convertToDatabaseColumn(Period attr) {
 		return attr == null ? null : attr.toString();
 	}
 
 	@Override
-	public OffsetDateTime convertToEntityAttribute(String data) {
-		return data == null ? null : OffsetDateTime.parse(data);
+	public Period convertToEntityAttribute(String data) {
+		return data == null ? null : Period.parse(data);
 	}
+
 }

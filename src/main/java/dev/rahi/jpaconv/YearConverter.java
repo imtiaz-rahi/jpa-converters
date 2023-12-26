@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
 import java.time.Year;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * {@link Year} to integer.
@@ -26,7 +26,7 @@ import javax.persistence.Converter;
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
+@Converter
 public class YearConverter implements AttributeConverter<Year, Integer> {
 
 	@Override

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2017 Imtiaz Rahi
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package dev.rahi.jpaconv;
+
+import java.time.Duration;
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+
 /**
+ * 
  * @author Imtiaz Rahi
- * @since 2017-04-27
+ * @since 2017-05-26
  */
-package com.github.imtiazrahi.jpa;
+@Converter
+public class DurationToStringConverter implements AttributeConverter<Duration, String> {
+
+	@Override
+	public String convertToDatabaseColumn(Duration attr) {
+		return attr == null ? null : attr.toString();
+	}
+
+	@Override
+	public Duration convertToEntityAttribute(String data) {
+		return data == null ? null : Duration.parse(data);
+	}
+
+}

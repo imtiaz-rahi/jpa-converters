@@ -1,4 +1,4 @@
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -11,6 +11,8 @@ import java.util.Calendar;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import dev.rahi.jpaconv.LocalDateConverter;
 
 public class LocalDateConverterTest {
 	private LocalDateConverter converter;

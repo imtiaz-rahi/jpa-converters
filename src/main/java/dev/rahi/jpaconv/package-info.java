@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2017 Imtiaz Rahi
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,28 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
-
-import java.time.Duration;
-
-import javax.persistence.AttributeConverter;
-
 /**
- * {@link Duration} to nano seconds
- * 
  * @author Imtiaz Rahi
- * @since 2017-05-26
+ * @since 2017-04-27
  */
-public class DurationToNanoConverter implements AttributeConverter<Duration, Long> {
-
-	@Override
-	public Long convertToDatabaseColumn(Duration attr) {
-		return attr == null ? null : attr.toNanos();
-	}
-
-	@Override
-	public Duration convertToEntityAttribute(Long data) {
-		return data == null ? null : Duration.ofNanos(data);
-	}
-
-}
+package dev.rahi.jpaconv;

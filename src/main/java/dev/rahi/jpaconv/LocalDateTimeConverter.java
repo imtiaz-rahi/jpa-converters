@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * Converts {@link LocalDateTime} to {@link Timestamp} and back.
@@ -28,7 +28,7 @@ import javax.persistence.Converter;
  * @since 2016-09-05
  * @see <a href="http://www.thoughts-on-java.org/persist-localdate-localdatetime-jpa">Java 8 LocalDateTime in JPA</a>
  */
-@Converter(autoApply = true)
+@Converter
 public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
 	@Override

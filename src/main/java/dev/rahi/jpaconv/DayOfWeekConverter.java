@@ -13,29 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.ZoneId;
+import java.time.DayOfWeek;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
+ * {@link DayOfWeek} to integer.
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
-public class ZoneIdConverter implements AttributeConverter<ZoneId, String> {
+@Converter
+public class DayOfWeekConverter implements AttributeConverter<DayOfWeek, Integer> {
 
 	@Override
-	public String convertToDatabaseColumn(ZoneId attr) {
-		return attr == null ? null : attr.toString();
+	public Integer convertToDatabaseColumn(DayOfWeek attr) {
+		return attr == null ? null : attr.getValue();
 	}
 
 	@Override
-	public ZoneId convertToEntityAttribute(String data) {
-		return data == null ? null : ZoneId.of(data);
+	public DayOfWeek convertToEntityAttribute(Integer data) {
+		return data == null ? null : DayOfWeek.of(data);
 	}
 
 }

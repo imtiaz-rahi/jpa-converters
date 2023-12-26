@@ -1,4 +1,4 @@
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
 import static java.time.DayOfWeek.*;
 import static org.testng.Assert.assertEquals;
@@ -8,6 +8,8 @@ import java.time.DayOfWeek;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import dev.rahi.jpaconv.DayOfWeekConverter;
 
 public class DayOfWeekConverterTest {
 	private DayOfWeekConverter converter;

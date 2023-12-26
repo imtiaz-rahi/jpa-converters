@@ -13,29 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.YearMonth;
+import java.sql.Timestamp;
+import java.time.Instant;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
+ * Converts {@link Instant} to {@link Timestamp} and back.
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
+ * @see <a href="http://www.thoughts-on-java.org/persist-localdate-Instant-jpa">Java 8 Instant in JPA</a>
  */
-@Converter(autoApply = true)
-public class YearMonthConverter implements AttributeConverter<YearMonth, String> {
+@Converter
+public class InstantConverter implements AttributeConverter<Instant, Timestamp> {
 
 	@Override
-	public String convertToDatabaseColumn(YearMonth attr) {
-		return attr == null ? null : attr.toString();
+	public Timestamp convertToDatabaseColumn(Instant attr) {
+		return attr == null ? null : Timestamp.from(attr);
 	}
 
 	@Override
-	public YearMonth convertToEntityAttribute(String data) {
-		return data == null ? null : YearMonth.parse(data);
+	public Instant convertToEntityAttribute(Timestamp data) {
+		return data == null ? null : data.toInstant();
 	}
-
 }

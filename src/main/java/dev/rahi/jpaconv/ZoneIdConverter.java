@@ -13,30 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.Month;
+import java.time.ZoneId;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
- * {@link Month} to integer.
+ * Converts {@link ZoneId} to string and back.
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
-public class MonthConverter implements AttributeConverter<Month, Integer> {
+@Converter
+public class ZoneIdConverter implements AttributeConverter<ZoneId, String> {
 
 	@Override
-	public Integer convertToDatabaseColumn(Month attr) {
-		return attr == null ? null : attr.getValue();
+	public String convertToDatabaseColumn(ZoneId attr) {
+		return attr == null ? null : attr.toString();
 	}
 
 	@Override
-	public Month convertToEntityAttribute(Integer data) {
-		return data == null ? null : Month.of(data);
+	public ZoneId convertToEntityAttribute(String data) {
+		return data == null ? null : ZoneId.of(data);
 	}
 
 }

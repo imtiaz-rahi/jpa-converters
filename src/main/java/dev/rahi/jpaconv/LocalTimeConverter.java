@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
 import java.sql.Time;
 import java.time.LocalTime;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * Converts {@link LocalTime} to {@link Time} and back. <br>
@@ -29,7 +29,7 @@ import javax.persistence.Converter;
  * @see <a href="https://github.com/marschall/threeten-jpa">ThreeTen JPA</a>
  * @see <a href="https://bitbucket.org/montanajava/jpaattributeconverters">Using the Java 8 Date Time Classes with JPA!</a>
  */
-@Converter(autoApply = true)
+@Converter
 public class LocalTimeConverter implements AttributeConverter<LocalTime, Time> {
 
 	@Override

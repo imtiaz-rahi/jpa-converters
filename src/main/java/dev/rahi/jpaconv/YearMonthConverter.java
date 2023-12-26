@@ -13,29 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.imtiazrahi.jpa;
+package dev.rahi.jpaconv;
 
-import java.time.Period;
+import java.time.YearMonth;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * 
  * @author Imtiaz Rahi
  * @since 2017-05-26
  */
-@Converter(autoApply = true)
-public class PeriodConverter implements AttributeConverter<Period, String> {
+@Converter
+public class YearMonthConverter implements AttributeConverter<YearMonth, String> {
 
 	@Override
-	public String convertToDatabaseColumn(Period attr) {
+	public String convertToDatabaseColumn(YearMonth attr) {
 		return attr == null ? null : attr.toString();
 	}
 
 	@Override
-	public Period convertToEntityAttribute(String data) {
-		return data == null ? null : Period.parse(data);
+	public YearMonth convertToEntityAttribute(String data) {
+		return data == null ? null : YearMonth.parse(data);
 	}
 
 }
